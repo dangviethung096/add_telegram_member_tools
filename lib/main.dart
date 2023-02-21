@@ -21,8 +21,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MainScreen extends StatefulWidget {
+  late List<Account> accounts = List.empty(growable: true);
   int pageIndex = 0;
-  List<Account> accounts = List.empty(growable: true);
 
   MainScreen({super.key, pageIndex}) {
     for (int i = 0; i < 5; i++) {
@@ -41,7 +41,6 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
-    print('Page Index: ${widget.pageIndex}');
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 

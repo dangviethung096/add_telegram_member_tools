@@ -5,6 +5,6 @@ import 'package:flutter/src/widgets/placeholder.dart';
 class AddMemberPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Text("Add members");
+    return Center(child: Text("Add members"));
   }
 }
