@@ -1,5 +1,8 @@
+import 'package:add_member_ui/model/account.dart';
+import 'package:add_member_ui/page/accounts_page.dart';
+import 'package:add_member_ui/page/add_member_page.dart';
 import 'package:flutter/material.dart';
-import 'navigation_drawer.dart';
+import 'sidebar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,32 +14,67 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-          appBarTheme: AppBarTheme(
-        color: Colors.teal,
-        centerTitle: true,
-      )),
-      home: Hamberger(),
+      home: MainScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class Hamberger extends StatefulWidget {
-  const Hamberger({super.key});
+class MainScreen extends StatefulWidget {
+  int pageIndex = 0;
+  List<Account> accounts = List.empty(growable: true);
+
+  MainScreen({super.key, pageIndex}) {
+    for (int i = 0; i < 5; i++) {
+      var account = Account(username: 'user_${i}', password: "pass_${i}");
+      if (i % 2 == 0) {
+        account.isLogin = true;
+      }
+      accounts.add(account);
+    }
+  }
 
   @override
-  State<Hamberger> createState() => _HambergerState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _HambergerState extends State<Hamberger> {
+class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
+    print('Page Index: ${widget.pageIndex}');
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
-      drawer: NavigationDrawerWidget(),
-      appBar: AppBar(
-        title: Text("Add Member Telegram"),
+      body: Row(
+        children: [
+          Container(
+            width: width * 0.2,
+            height: height,
+            child: SideBar(selectPage),
+          ),
+          Expanded(
+            child: getPage(),
+          ),
+        ],
       ),
     );
+  }
+
+  Widget getPage() {
+    switch (widget.pageIndex) {
+      case 0:
+        return AccountsPage(widget.accounts);
+      case 1:
+        return AddMemberPage();
+      default:
+        return AccountsPage(widget.accounts);
+    }
+  }
+
+  selectPage(index) {
+    setState(() {
+      widget.pageIndex = index;
+    });
   }
 }
