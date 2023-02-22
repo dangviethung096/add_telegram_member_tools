@@ -47,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: Row(
         children: [
-          Container(
+          SizedBox(
             width: width * 0.2,
             height: height,
             child: SideBar(selectPage),
@@ -65,7 +65,7 @@ class _MainScreenState extends State<MainScreen> {
       case 0:
         return AccountsPage(widget.accounts);
       case 1:
-        return AddMemberPage();
+        return AddMemberPage(stateIndex: 1);
       default:
         return AccountsPage(widget.accounts);
     }
