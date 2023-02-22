@@ -12,8 +12,6 @@ class Context extends StatefulWidget {
 
   @override
   State<Context> createState() => _ContextState();
-
-  changePage() {}
 }
 
 class _ContextState extends State<Context> {

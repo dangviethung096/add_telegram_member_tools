@@ -23,6 +23,26 @@ class _AccountsPageState extends State<AccountsPage> {
     return Column(
       children: [
         Container(
+          child: TextField(
+            decoration: InputDecoration(
+              labelText: "App ID",
+              border: OutlineInputBorder(),
+            ),
+          ),
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.all(8.0),
+        ),
+        Container(
+          child: TextField(
+            decoration: InputDecoration(
+              labelText: "App Hash",
+              border: OutlineInputBorder(),
+            ),
+          ),
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.all(8.0),
+        ),
+        Container(
           child: TextButton(
             child: Text("Add Account"),
             style: ButtonStyle(
@@ -52,8 +72,8 @@ class _AccountsPageState extends State<AccountsPage> {
   }
 
   Future<void> _showAddAccountDialog(BuildContext context) {
-    double widthDialog = MediaQuery.of(context).size.width / 5;
-    double heightDialog = MediaQuery.of(context).size.height / 5;
+    double widthDialog = MediaQuery.of(context).size.width / 4;
+    double heightDialog = MediaQuery.of(context).size.height / 4;
     late TextEditingController usernameController = TextEditingController();
     late TextEditingController passwordController = TextEditingController();
 
